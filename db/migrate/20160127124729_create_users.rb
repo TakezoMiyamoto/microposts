@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration
 
       t.timestamps null: false
       
+      #emailにユニークインデックスを追加して、メールアドレスが他と異なるようにしています
       t.index :email, unique: true
     end
   end
