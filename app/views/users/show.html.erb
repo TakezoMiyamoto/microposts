@@ -1,6 +1,18 @@
-<h1>
-    <%= gravatar_for @user %>
-    <%= @user.name %>
-</h1>
+<div class="container">
+    <h1>My Profile</h1>
+    <p><%= gravatar_for @user %></p>
+    <p><%= @user.name %></p>
+    <p><%= @user.origin %></p>
+    <p><%= @user.profile %></p>
+    <p><%= link_to "プロフィール編集", edit_user_path(current_user.id), {:class => 'btn btn-large btn-primary'} %></p>
+</div>
+
+    
+
+            
+
+    
+    
+
 
 

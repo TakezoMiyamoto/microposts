@@ -11,10 +11,21 @@
             <%= f.label :email %>
             <%= f.email_field :email %>
             
+            <%= f.label :origin %>
+            <%= f.text_field :origin, :placeholder => "Enter your hometown"  %>
             
+            <%= f.label :profile %>
+            <%= f.text_area :profile, :placeholder => "Enter your profile within 150 charactors" , row: 5 %>
             
             <%= f.submit "Update my profile", class: "btn btn-large btn-primary" %>
         <% end %>
+        
+        <div class="gravatar_edit">
+            <%= gravatar_for current_user %>
+            <a href="http://gravatar.com/emails" target="_blank">Change Pic</a>
+        </div>
+        
+        
     </div>
         
 </div>
