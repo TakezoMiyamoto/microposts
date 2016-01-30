@@ -3,10 +3,11 @@ class UsersController < ApplicationController
   # edit, update の時は, Login しているかを先に確認する
   before_action :logged_in_user, only:[:edit, :update]
   before_action :matched_user, only:[:edit, :update]
+  before_action :set_user, only:[:show, :edit, :update]
   
   
   def show
-    @user = User.find(params[:id])
+    
   end
   
   def new
@@ -25,11 +26,11 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find(params[:id])
+    
   end
   
   def update
-    @user = User.find(params[:id])
+    
     if @user.update(edit_user_params)
       flash[:success] = "Your profile was updated!"
       redirect_to @user
@@ -46,6 +47,10 @@ class UsersController < ApplicationController
   
   def edit_user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :origin, :profile)
+  end
+  
+  def set_user
+    @user = User.find(params[:id])
   end
   
   #ログイン中か確認 
