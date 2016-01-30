@@ -2,20 +2,26 @@
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <%= form_for current_user do |f| %>
+        <%= form_for(@user) do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
         
             <%= f.label :name %>
-            <%= f.text_field :name %>
+            <%= f.text_field :name, class: 'form-control' %>
             
             <%= f.label :email %>
-            <%= f.email_field :email %>
+            <%= f.email_field :email, class: 'form-control' %>
+            
+            <%= f.label :password %>
+            <%= f.password_field :password, class: 'form-control' %>
+            
+            <%= f.label :password_confirmation, "Confirmation" %>
+            <%= f.password_field :password_confirmation, class: 'form-control' %>
             
             <%= f.label :origin %>
-            <%= f.text_field :origin, :placeholder => "Enter your hometown"  %>
+            <%= f.text_field :origin, class: 'form-control', :placeholder => "Enter your hometown"  %>
             
             <%= f.label :profile %>
-            <%= f.text_area :profile, :placeholder => "Enter your profile within 150 charactors" , row: 5 %>
+            <%= f.text_area :profile, class: 'form-control', :placeholder => "Enter your profile within 150 charactors" , row: 5 %>
             
             <%= f.submit "Update my profile", class: "btn btn-large btn-primary" %>
         <% end %>

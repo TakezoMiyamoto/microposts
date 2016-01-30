@@ -5,7 +5,7 @@ module SessionsHelper
         #⇨すなわち、ログインしているユーザーを毎回DBに取りに行かなくてすみます。
     end
    
-    def logged_in
+    def logged_in?
         !!current_user # !!は、右側に続く値が存在する場合はtrueを、nilの場合はfalseを返します
     end
     

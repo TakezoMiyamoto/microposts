@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   
   # edit, update の時は, Login しているかを先に確認する
   before_action :logged_in_user, only:[:edit, :update]
+  before_action :matched_user, only:[:edit, :update]
   
   
   def show
@@ -44,14 +45,23 @@ class UsersController < ApplicationController
   end
   
   def edit_user_params
-    params.require(:user).permit(:name, :email, :origin, :profile)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :origin, :profile)
   end
   
   #ログイン中か確認 
   def logged_in_user
-    unless logged_in
+    unless logged_in?
       flash[:danger] = "Please log in first."
       redirect_to login_path
     end
   end
+  
+  # 正しいユーザーかチェック
+  def matched_user
+    @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to user_path(current_user.id)
+    end
+  end
+  
 end
