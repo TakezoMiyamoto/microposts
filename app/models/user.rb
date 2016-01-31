@@ -7,4 +7,6 @@ class User < ActiveRecord::Base
     validates :profile, presence: false, length: { maximum: 150 }
     has_secure_password
     validates :password, presence: true, length: { minimum: 4 }
+    
+    has_many :microposts
 end
