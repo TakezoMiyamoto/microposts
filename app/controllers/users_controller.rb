@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   # edit, update の時は, Login しているかを先に確認する
   before_action :logged_in_user, only:[:edit, :update]
   before_action :matched_user, only:[:edit, :update]
-  before_action :set_user, only:[:show, :edit, :update]
+  before_action :set_user, only:[:show, :edit, :update, :following, :followers]
   
   
   def show
@@ -38,6 +38,18 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+  
+  def following
+    @title = "Following"
+    @users = @user.following_users
+    render 'show_follow'
+  end
+  
+  def followers
+    @title = "Followers"
+    @users = @user.follower_users
+    render 'show_follow'
   end
   
   private
