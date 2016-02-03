@@ -1,10 +1,13 @@
 class UsersController < ApplicationController
   
   # edit, update の時は, Login しているかを先に確認する
-  before_action :logged_in_user, only:[:edit, :update]
+  before_action :logged_in_user, only:[:index, :edit, :update]
   before_action :matched_user, only:[:edit, :update]
   before_action :set_user, only:[:show, :edit, :update, :following, :followers]
   
+  def index
+    @users = User.all
+  end
   
   def show
     @user = User.find(params[:id])
