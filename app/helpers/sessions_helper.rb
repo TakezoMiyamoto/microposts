@@ -4,6 +4,11 @@ module SessionsHelper
         #||=で代入を行っているので、左側の@current_userに値が入っている場合は、右側のUser.find_byで始まる処理は実行されません。
         #⇨すなわち、ログインしているユーザーを毎回DBに取りに行かなくてすみます。
     end
+    
+    # 渡されたユーザーでログインする
+    def log_in(user)
+       session[:user_id] = user.id 
+    end
    
     def logged_in?
         !!current_user # !!は、右側に続く値が存在する場合はtrueを、nilの場合はfalseを返します

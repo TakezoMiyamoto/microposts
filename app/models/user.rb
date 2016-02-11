@@ -34,4 +34,8 @@ class User < ActiveRecord::Base
         following_users.include?(other_user)
       end
       
+      def feed
+        Micropost.where("user_id=?",id)
+      end
+      
 end
